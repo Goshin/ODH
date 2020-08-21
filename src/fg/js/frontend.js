@@ -176,6 +176,10 @@ class ODHFront {
         this.audio[url] = audio;
     }
 
+    api_contextMenuSearch(params) {
+        this.onSelectionEnd()
+    }
+
     buildNote(result) {
         //get 1 sentence around the expression.
         const expression = selectedText();

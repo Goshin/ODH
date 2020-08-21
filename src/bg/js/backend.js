@@ -24,6 +24,13 @@ class ODHBack {
         chrome.tabs.onUpdated.addListener(this.onTabReady.bind(this));
         chrome.commands.onCommand.addListener((command) => this.onCommand(command));
 
+        chrome.contextMenus.create({
+            title: "Search: \"%s\"",
+            contexts: ["selection"],
+            onclick: (info, tab) => {
+                this.tabInvoke(tab.id, "contextMenuSearch", {});
+            },
+        });
     }
 
     onCommand(command) {
