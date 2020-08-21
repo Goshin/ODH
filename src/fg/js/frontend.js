@@ -15,6 +15,7 @@ class ODHFront {
         this.popup = new Popup();
         this.timeout = null;
         this.mousemoved = false;
+        this.disablePosUpdate = false;
 
         window.addEventListener('mousemove', e => this.onMouseMove(e));
         window.addEventListener('mousedown', e => this.onMouseDown(e));
@@ -59,9 +60,12 @@ class ODHFront {
 
     onMouseDown(e) {
         this.popup.hide();
+        this.point = {x: e.clientX, y: e.clientY};
+        this.disablePosUpdate = e.button === 2;
     }
 
     onMouseMove(e) {
+        if (this.disablePosUpdate) return;
         this.mousemoved = true;
         this.point = {
             x: e.clientX,
